@@ -3,6 +3,8 @@ package com.imooc.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.imooc.bean.Command_Content;
+import com.imooc.dao.CommandContentDao;
 import com.imooc.dao.MessageDao;
 
 /**
@@ -36,4 +38,18 @@ public class MaintainService {
 		messageDao.deleteBatch(idList);
 	}
 
+	public void insertContentBatch(String[] contents, String[] commandids) {
+		List<Command_Content> list = new ArrayList<Command_Content>();
+		if (contents != null && commandids != null
+				&& contents.length > 0 && commandids.length > 0) {
+			for (int i = 0; i < contents.length; i++) {
+				Command_Content content = new Command_Content();
+				content.setContent(contents[i]);
+				content.setCommand_id(Integer.valueOf(commandids[i]));
+				list.add(content);
+			}
+			CommandContentDao commandContentDao = new CommandContentDao();
+			commandContentDao.insertBatch(list);
+		}
+	}
 }

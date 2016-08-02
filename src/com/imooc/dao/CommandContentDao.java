@@ -70,4 +70,17 @@ public class CommandContentDao {
 		}
 		return contentList;
 	}
+	
+	public void insertBatch(List<Command_Content> list){
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			ICommandContent iCommandContent = sqlSession.getMapper(ICommandContent.class);
+			iCommandContent.insertBatch(list);
+			sqlSession.commit(); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

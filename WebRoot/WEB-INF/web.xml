@@ -50,11 +50,20 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>InitTalk</servlet-name>
-		<servlet-class>com.imooc.servlet.InitTalk</servlet-class>
+		<servlet-name>InitTalkServlet</servlet-name>
+		<servlet-class>com.imooc.servlet.InitTalkServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>InitTalk</servlet-name>
+		<servlet-name>InitTalkServlet</servlet-name>
 		<url-pattern>/InitTalk.action</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>InsertServlet</servlet-name>
+		<servlet-class>com.imooc.servlet.InsertServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InsertServlet</servlet-name>
+		<url-pattern>/insert.action</url-pattern>
 	</servlet-mapping>
 </web-app>
