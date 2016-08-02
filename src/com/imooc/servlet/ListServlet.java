@@ -1,21 +1,21 @@
 package com.imooc.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.imooc.bean.Message;
-import com.imooc.service.ListService;
+//import com.imooc.bean.Message;
+import com.imooc.service.QueryService;
 
 /**
  * @author Mr_PR
@@ -36,9 +36,9 @@ public class ListServlet extends HttpServlet{
 		req.setAttribute("command", command);
 		req.setAttribute("description", description);
 		
-		ListService listService = new ListService();
+		QueryService listService = new QueryService();
 		// 查询消息列表并传给页面
-		req.setAttribute("messageList", listService.queryMessageList(command, description));
+		req.setAttribute("messageList", listService.queryCommandList(command, description));
 		// 向页面跳转
 		req.getRequestDispatcher("/WEB-INF/jsp/back/list.jsp").forward(req, resp);
 	}
