@@ -1,0 +1,3 @@
+# MyBatisLearning-JDBC
+学习MyBatis的记录
+这一版本用jdbc实现一个简单的机器人回复
