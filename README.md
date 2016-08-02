@@ -1,2 +1,2 @@
-# MyBatisLearning-MyBatis
-在MyBatis的基础上添加分页查询功能
+# MyBatisLearning
+使用MyBatis的拦截器来做分页查询

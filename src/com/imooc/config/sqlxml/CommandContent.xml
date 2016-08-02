@@ -29,13 +29,28 @@
 		from COMMAND_CONTENT a left join COMMAND b
 		on a.COMMAND_ID = b.ID
 		<where>
-			<if test="command.command != null and !&quot;&quot;.equals(command.command.trim())">
-				and b.NAME = #{command.command}
+			<if test="command.name != null and !&quot;&quot;.equals(command.name.trim())">
+				and b.NAME = #{command.name}
 			</if>
 			<if test="command.description != null and !&quot;&quot;.equals(command.description.trim())">
 				and b.DESCRIPTION like '%' #{command.description} '%'
 			</if>
 		</where>
 		order by a.ID limit #{page.dbIndex},#{page.dbNumber}
+	</select>
+	
+	<select id="queryContentListByPage" parameterType="java.util.Map" resultMap="CommandContentResult">
+		select a.ID,a.CONTENT,a.COMMAND_ID, b.ID C_ID,b.NAME,b.DESCRIPTION
+		from COMMAND_CONTENT a left join COMMAND b
+		on a.COMMAND_ID = b.ID
+		<where>
+			<if test="command.name != null and !&quot;&quot;.equals(command.name.trim())">
+				and b.NAME = #{command.name}
+			</if>
+			<if test="command.description != null and !&quot;&quot;.equals(command.description.trim())">
+				and b.DESCRIPTION like '%' #{command.description} '%'
+			</if>
+		</where>
+		order by a.ID
 	</select>
 </mapper>

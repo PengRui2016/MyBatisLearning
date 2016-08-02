@@ -52,4 +52,22 @@ public class CommandContentDao {
 		}
 		return contentList;
 	}
+	
+	public List<Command_Content> queryContentListByPage(Map<String, Object> params) {
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		List<Command_Content> contentList = new ArrayList<Command_Content>();
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			ICommandContent iCommandContent = sqlSession.getMapper(ICommandContent.class);
+			contentList = iCommandContent.queryContentListByPage(params);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+		return contentList;
+	}
 }

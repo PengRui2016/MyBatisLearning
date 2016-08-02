@@ -66,7 +66,7 @@ public class QueryService {
 	public List<Command_Content> queryContentList(String command, String description, MyPage page){
 		CommandContentDao contentDao = new CommandContentDao();
 		Command cmd = new Command();
-		cmd.setCommand(command);
+		cmd.setName(command);
 		cmd.setDescription(description);
 		
 		int count = contentDao.count(cmd);
@@ -77,6 +77,25 @@ public class QueryService {
 		params.put("page", page);
 		
 		List<Command_Content> contentList = contentDao.queryContentList(params);
+		return contentList;
+	}
+	
+	/**
+	 * 查询指令列表
+	 * @param command
+	 * @param description
+	 * @return
+	 */
+	public List<Command_Content> queryContentListByPage(String command, String description, MyPage page){
+		Command cmd = new Command();
+		cmd.setName(command);
+		cmd.setDescription(description);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("command", cmd);
+		params.put("page", page);
+		
+		CommandContentDao contentDao = new CommandContentDao();
+		List<Command_Content> contentList = contentDao.queryContentListByPage(params);
 		return contentList;
 	}
 	
@@ -95,12 +114,12 @@ public class QueryService {
 				if(i != 0){
 					sb.append("<br />");
 				}
-				sb.append("回复[" + commandList.get(i).getCommand() + "]可以查看" + commandList.get(i).getDescription());
+				sb.append("回复[" + commandList.get(i).getName() + "]可以查看" + commandList.get(i).getDescription());
 			}
 			return sb.toString();
 		}
 		Command cmd = new Command();
-		cmd.setCommand(command);
+		cmd.setName(command);
 		commandList = commandDao.queryCommandList(cmd);
 		if(commandList.size() > 0){
 			List<Command_Content> contentList = commandList.get(0).getContentList();

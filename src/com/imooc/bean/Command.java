@@ -28,11 +28,12 @@ public class Command {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCommand() {
+	
+	public String getName() {
 		return name;
 	}
-	public void setCommand(String command) {
-		this.name = command;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getDescription() {
 		return description;

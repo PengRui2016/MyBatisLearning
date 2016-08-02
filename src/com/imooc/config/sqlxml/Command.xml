@@ -9,7 +9,7 @@
 		<id column="C_ID" jdbcType="INTEGER" property="id"/>
 		<result column="NAME" jdbcType="VARCHAR" property="name"/>
 		<result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
-		<collection property="contentList" resultMap="com.imooc.dao.ICommandContent.CommandContentResult" />
+		<!-- <collection property="contentList" resultMap="com.imooc.dao.ICommandContent.CommandContentResult" /> -->
 	</resultMap>
 
 	<select id="queryCommandList" parameterType="com.imooc.bean.Command" resultMap="CommandResult">

@@ -48,8 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<tr <c:if test="${status.index % 2 != 0}">style="background-color:#ECF6EE;"</c:if>>
 									<td><input type="checkbox" name="id" value="${content.id}"/></td>
 										<td>${status.index + 1}</td>
-										<td><%-- ${content.command.name} --%></td>
-										<td><%-- ${content.command.description} --%></td> 
+										<td>${content.command.name}</td>
+										<td>${content.command.description}</td> 
 										<td>
 											<a href="#">修改</a>&nbsp;&nbsp;&nbsp;
 											<a href="${baseath}deleteone.action?id=${content.id}">删除</a>

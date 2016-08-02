@@ -55,6 +55,30 @@ public class MyPage {
 		this.totalNumber = totalNumber;
 	}
 
+	public int getDbIndex() {
+		return dbIndex;
+	}
+
+	public void setDbIndex(int dbIndex) {
+		this.dbIndex = dbIndex;
+	}
+
+	public int getDbNumber() {
+		return dbNumber;
+	}
+
+	public void setDbNumber(int dbNumber) {
+		this.dbNumber = dbNumber;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
 	/**
 	 * 计算属性值
 	 */
