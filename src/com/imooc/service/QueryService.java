@@ -1,13 +1,17 @@
 package com.imooc.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import com.imooc.bean.Command;
 import com.imooc.bean.Command_Content;
 import com.imooc.bean.Message;
+import com.imooc.dao.CommandContentDao;
 import com.imooc.dao.CommandDao;
 import com.imooc.dao.MessageDao;
+import com.imooc.entity.MyPage;
 import com.imooc.util.IConst;
 
 /**
@@ -59,9 +63,21 @@ public class QueryService {
 	 * @param description
 	 * @return
 	 */
-	public List<Command> queryCommandList(String command, String description){
-		CommandDao commandDao = new CommandDao();
-		return commandDao.queryCommandList(command, description);
+	public List<Command_Content> queryContentList(String command, String description, MyPage page){
+		CommandContentDao contentDao = new CommandContentDao();
+		Command cmd = new Command();
+		cmd.setCommand(command);
+		cmd.setDescription(description);
+		
+		int count = contentDao.count(cmd);
+		page.setTotalNumber(count);
+		page.count();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("command", cmd);
+		params.put("page", page);
+		
+		List<Command_Content> contentList = contentDao.queryContentList(params);
+		return contentList;
 	}
 	
 	/**
@@ -73,7 +89,7 @@ public class QueryService {
 		CommandDao commandDao = new CommandDao();
 		List<Command> commandList = null;
 		if(IConst.HELP.equals(command.trim())){
-			commandList = commandDao.queryCommandList(null, null);
+			commandList = commandDao.queryCommandList(null);
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < commandList.size(); i++) {
 				if(i != 0){
@@ -83,7 +99,9 @@ public class QueryService {
 			}
 			return sb.toString();
 		}
-		commandList = commandDao.queryCommandList(command, null);
+		Command cmd = new Command();
+		cmd.setCommand(command);
+		commandList = commandDao.queryCommandList(cmd);
 		if(commandList.size() > 0){
 			List<Command_Content> contentList = commandList.get(0).getContentList();
 			int i = new Random().nextInt(contentList.size());

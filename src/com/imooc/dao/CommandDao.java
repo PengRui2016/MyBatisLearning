@@ -9,21 +9,16 @@ import org.apache.ibatis.session.SqlSession;
 import com.imooc.bean.Command;
 import com.imooc.db.DBAccess;
 
-/**
- * Command表对应的数据库操作类
- */
 public class CommandDao {
 
-	public List<Command> queryCommandList(String command, String description) {
+	public List<Command> queryCommandList(Command command) {
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		List<Command> commandList = new ArrayList<Command>();
 		try {
 			sqlSession = dbAccess.getSqlSession();
-			Command cmd = new Command();
-			cmd.setCommand(command);
-			cmd.setDescription(description);
-			commandList = sqlSession.selectList("Command.queryMessageList", cmd);
+			ICommand iCommand = sqlSession.getMapper(ICommand.class);
+			commandList = iCommand.queryCommandList(command);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

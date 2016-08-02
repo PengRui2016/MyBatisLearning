@@ -1,3 +1,2 @@
 # MyBatisLearning-MyBatis
-MyBatis学习之旅——MyBatis初体验
- 
+在MyBatis的基础上添加分页查询功能
